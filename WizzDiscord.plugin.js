@@ -1,8 +1,8 @@
 /**
  * @name WizzDiscord
  * @author Xor
- * @description V16 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
- * @version 1.16.1
+ * @description V17 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
+ * @version 1.17.0
  * @website https://github.com/1posix/discord-wizz
  * @source https://github.com/1posix/discord-wizz/blob/master/WizzDiscord.plugin.js
  * @updateUrl https://raw.githubusercontent.com/1posix/discord-wizz/refs/heads/master/WizzDiscord.plugin.js
@@ -22,21 +22,34 @@ module.exports = class WizzDiscord {
         this.audio.volume = 0.5;
         // ==============================================
 
-        // Path Finder Linux
+        // --- PATH FINDER CROSS-PLATFORM ---
         try {
             const home = process.env.HOME || process.env.USERPROFILE;
-            const possiblePath = path.join(home, ".config", "BetterDiscord", "plugins");
-            if (fs.existsSync(possiblePath)) {
-                this.configPath = path.join(possiblePath, "wizz_settings.json");
+            let pluginDir;
+
+            if (process.platform === "win32") {
+                pluginDir = path.join(process.env.APPDATA, "BetterDiscord", "plugins");
+            } else if (process.platform === "darwin") {
+                pluginDir = path.join(home, "Library", "Application Support", "BetterDiscord", "plugins");
             } else {
+                pluginDir = path.join(home, ".config", "BetterDiscord", "plugins");
+            }
+
+            if (fs.existsSync(pluginDir)) {
+                this.configPath = path.join(pluginDir, "wizz_settings.json");
+            } else {
+                console.warn("[Wizz] Dossier standard introuvable, sauvegarde à la racine user.");
                 this.configPath = path.join(home, "wizz_settings.json");
             }
-        } catch(e) { console.error(e); }
+        } catch (e) {
+            console.error("[Wizz] Erreur critique Path:", e);
+            this.configPath = path.join(process.env.HOME || process.env.USERPROFILE, "wizz_settings.json");
+        }
 
         this.defaultSettings = { allowedUsers: "", cooldown: 5000, allowEveryone: false };
-        this.settings = this.defaultSettings; 
-        
-        this.patchMenu = this.patchMenu.bind(this); 
+        this.settings = this.defaultSettings;
+
+        this.patchMenu = this.patchMenu.bind(this);
     }
 
     start() {
