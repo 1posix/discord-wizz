@@ -1,8 +1,8 @@
 /**
  * @name WizzDiscord
  * @author Xor
- * @description V16 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
- * @version 1.16.0
+ * @description V17 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
+ * @version 1.16.1
  * @website https://github.com/1posix/discord-wizz
  * @source https://github.com/1posix/discord-wizz/blob/master/WizzDiscord.plugin.js
  * @updateUrl https://raw.githubusercontent.com/1posix/discord-wizz/refs/heads/master/WizzDiscord.plugin.js
