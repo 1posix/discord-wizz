@@ -3,6 +3,9 @@
  * @author Xor
  * @description V16 - Panneau de gestion visuel et Mode "Tout le monde".
  * @version 1.16.0
+ * @website https://github.com/1posix/discord-wizz
+ * @source https://github.com/1posix/discord-wizz/blob/master/WizzDiscord.plugin.js
+ * @updateUrl https://raw.githubusercontent.com/1posix/discord-wizz/refs/heads/master/WizzDiscord.plugin.js
  */
 
 const fs = require("fs");
