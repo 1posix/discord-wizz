@@ -1,8 +1,8 @@
 /**
  * @name WizzDiscord
  * @author Xor
- * @description V17 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
- * @version 1.17.0
+ * @description V18 - Travel back to the 2000s with this Discord plugin that recreates the legendary MSN Wizz.
+ * @version 1.18.0
  * @website https://github.com/1posix/discord-wizz
  * @source https://github.com/1posix/discord-wizz/blob/master/WizzDiscord.plugin.js
  * @updateUrl https://raw.githubusercontent.com/1posix/discord-wizz/refs/heads/master/WizzDiscord.plugin.js
@@ -260,6 +260,8 @@ module.exports = class WizzDiscord {
         try {
             if (!this.myId || !event || !event.message) return;
             const msg = event.message;
+
+            if (msg.message_reference) return;
 
             const allowEveryone = this.settings.allowEveryone;
 
